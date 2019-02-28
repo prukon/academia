@@ -55,9 +55,6 @@ console.log(isChecked || (isClose = 2));
 console.log(isClose);
 
 // 'use strict';
-
-
-
 var money = prompt("Ваш бюджет на месяц?");
 var time = prompt("Введите дату в формате YYYY-MM-DD");
 var firstExpenses = prompt("Введите обязательную статью расходов в этом месяце");
@@ -81,4 +78,5 @@ let appData = {
 console.log(appData);
 
 let curBidget = (appData.budget - (appData.expenses.firstExpenses + appData.expenses.secondExpenses))/30;
+
 alert("Бюджет на 1 день: " + curBidget + " руб"); 
