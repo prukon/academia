@@ -23,9 +23,47 @@ for (let i = 0; i < 2; i++) {
                 console.log("done");
                 appData.expenses[a] = b;
         } else {
-
+i--;
         }
 };
+
+
+// let i=0;
+// while (i < 2) {
+
+//         let a = prompt("Введите обязательную статью расходов в этом месяце", ""),
+//         b = prompt("Во сколько обойдется?", "");
+
+// if (typeof (a) === "string" && typeof (a) != null &&
+//         typeof (b) === "string" && typeof (b) != null &&
+//         a != "" && b != "" && a.length < 50) {
+//         console.log("done");
+//         appData.expenses[a] = b;
+// } else {
+//     i--;
+// }
+// i++;
+// }
+
+
+// var i = 0;
+// do {
+//         let a = prompt("Введите обязательную статью расходов в этом месяце", ""),
+//                 b = prompt("Во сколько обойдется?", "");
+
+//         if (typeof (a) === "string" && typeof (a) != null &&
+//                 typeof (b) === "string" && typeof (b) != null &&
+//                 a != "" && b != "" && a.length < 50) {
+//                 console.log("done");
+//                 appData.expenses[a] = b;
+//         } else {
+//     i--;
+//         }
+//         i++;
+// } while (i < 2);
+
+
+
 
 
 
@@ -57,12 +95,11 @@ if (appData.moneyPerDay < 100) {
 //     default:
 //     console.log("Передана какая-то кабала");
 // }
-    
-    
+
+
 // (appData.moneyPerDay < 100) ? console.log("Минимальный уровень достатка") :
 // (appData.moneyPerDay > 100 && appData.moneyPerDay < 2000) ? console.log("Средний уровень достатка") :
 // (appData.moneyPerDay > 2000) ? console.log("Высокий уровень достатка") :  console.log("Передана какая-то кабала");
 
 
 console.log(appData);
-
