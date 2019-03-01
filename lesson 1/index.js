@@ -11,16 +11,17 @@ var answerTwo = +prompt("Во сколько обойдется?");
 let appData = {
     budget: money,
     timeData: time,
-    expenses: {
-        firstExpenses: answerOne,
-        secondExpenses: answerTwo,
-    },
+    expenses: {},
     optionalExpenses: {},
     income: [],
     savings: false
 };
+
+appData.expenses[firstExpenses] = answerOne;
+appData.expenses[secondExpenses] = answerTwo;
+
+
 console.log(appData);
+let budjet = appData.budget/30;
 
-let curBidget = (appData.budget - (appData.expenses.firstExpenses + appData.expenses.secondExpenses))/30;
-
-alert("Бюджет на 1 день: " + curBidget + " руб"); 
+alert("Бюджет на 1 день: " + budjet + " Руб");
