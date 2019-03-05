@@ -115,8 +115,44 @@ for (let i = 0; i < arr.length; i++) {
         console.log(arr[i]);
 
         newArr = newArr + Math.pow(arr[i], 3);
-        sqr =  Math.sqrt(newArr);
+        sqr = Math.sqrt(newArr);
     }
 }
 console.log(sqr); //4 часть
 
+
+
+function func(a) {
+    if (typeof a != "string") {
+        alert("Передана не строка");
+    } else {
+        a = a.trim();
+        if (a.length > 50) {
+            a = a.substr(0, 50);
+            a = a + "...";
+        }
+    }
+    console.log(a);
+}
+func(" Этот инструмент является отличным помощником, кстати, всем привет! ");
+
+
+
+
+
+
+
+// for (let i = 0; i<a.length; i++){
+//     if (a[i] == "") {
+//         a = a.replace(" ", "");
+//     }
+// }
+
+// if (a[0]==" "){
+//     a = a.replace(" ", "");
+// }
+// if (a.charAt(a.length-1) == " "){
+//     alert(a.substring(0, a.length - 1));
+// }
+// console.log(a);
+// }
