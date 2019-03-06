@@ -1,85 +1,4 @@
 'use strict';
-// let options = {
-//     width: 1024,
-//     height: 1024,
-//     name: "text"
-// };
-
-// options.bool = false;
-// options.colors = {
-//     border: "black",
-//     bg: "red"
-// };
-
-// delete options.bool;
-// for (let key in options) {
-//     console.log("свойство " + key + "  имеет значение " + options[key])
-// }
-// console.log(Object.keys(options).length);
-
-// let arr = ["first", 2, 3, "four", 5];
-
-// // arr.pop();
-// // arr.push("5");
-// // arr.shift();
-// // arr.unshift("1");
-
-// // for (let i = 0; i<arr.length; i++){
-// //     console.log(arr[i]);
-// // }
-
-// arr.forEach(function(item, i, mass){
-//     console.log(i + ": " + item + " (массив: " + mass + ")");
-// });
-
-// console.log(arr);
-
-// let mass = [1,3,4,6,7];
-
-
-
-// for (let key of mass){
-//     console.log(key);
-
-// }
-
-// let ans = prompt("",""),
-// arr = [];
-// arr = ans.split(",");
-// console.log(arr);
-
-// let arr = ["adsd","grtg","fefw"],
-// i = arr.join(", ");
-// console.log(i);
-
-// let arr = ["adsd","grtg","fefw"],
-// i = arr.sort();
-
-// console.log(arr);
-
-// let arr = ["1","15","4"],
-// i = arr.sort(compareNum);
-
-// function compareNum(a,b){
-//     return a-b;
-// }
-
-// console.log(arr);
-
-// let soldier = {
-//     health:400,
-//     armor:100
-// };
-// let john = {
-//     health:100
-// };
-// john.__proto__ = soldier;
-
-// console.log(john);
-// console.log(john.armor);
-
-
-
 let money, time;
 let optionalExpenses = {};
 
@@ -163,17 +82,18 @@ let appData = {
             }
         }
         appData.income.sort();
-
+        console.log("Способы доп. заработка: ");
+        appData.income.forEach(function(item, i){
+            console.log(i+1 + " " + item );
+        });
     }
 };
-appData.income.forEach(function(item, i){
-    i++;
-    alert("Способы доп. заработка: " + item)
-});
 
 for (let key in appData) {
     console.log("Наша программа включает в себя данные: " + appData[key])
 }
+
+
 
 // chooseExpenses();
 // detectDayBudget();
@@ -184,3 +104,4 @@ for (let key in appData) {
 
 console.log(appData);
 console.log(optionalExpenses);
+
