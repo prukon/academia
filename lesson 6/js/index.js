@@ -107,7 +107,7 @@ btnAcceptTwo.addEventListener('click', function () {
     for (let i = 0; i < optionalExpenses.length; i++) {
         let opt = optionalExpenses[i].value;
         appData.optionalExpenses[i] = opt;
-        optionalexpensesValue.textContent += appData.optionalExpenses[i] + "";
+        optionalexpensesValue.textContent += appData.optionalExpenses[i] + " ";
     }
 
 });
