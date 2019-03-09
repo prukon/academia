@@ -46,6 +46,7 @@ btnStart.addEventListener('click', function () {
     monthValue.value = new Date(Date.parse(time)).getMonth() + 1;
     dayValue.value = new Date(Date.parse(time)).getDate();
     start = 1;
+    calculate.disabled = false;
     testExpensesItem()
     testOptionalExpenses()
 
@@ -114,8 +115,9 @@ btnAcceptTwo.addEventListener('click', function () {
 //Рассчитать
 calculate.addEventListener('click', function () {
 
+
     if (appData.budget != undefined) {
-        appData.moneyPerDay = ((appData.budget - 10000) / 30).toFixed();
+        appData.moneyPerDay = ((appData.budget - +expensesItem[1].value - +expensesItem[3].value) / 30).toFixed();
         daybudgetValue.textContent = appData.moneyPerDay;
         if (appData.moneyPerDay < 100) {
             levelValue.textContent = "Минимальный уровень достатка";
