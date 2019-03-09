@@ -104,12 +104,26 @@ btnAcceptOne.addEventListener('click', function () {
 //Утвердить 2
 btnAcceptTwo.addEventListener('click', function () {
 
-    for (let i = 0; i < optionalExpenses.length; i++) {
-        let opt = optionalExpenses[i].value;
-        appData.optionalExpenses[i] = opt;
-        optionalexpensesValue.textContent += appData.optionalExpenses[i] + " ";
+
+    if (optionalexpensesValue.textContent != "") {
+        optionalexpensesValue.textContent = "";
     }
 
+    for (let i = 0; i < optionalExpenses.length; i++) {
+
+
+        if (isCyrillic(optionalExpenses[i].value)) {
+            console.log("Кириллица")
+            let opt = optionalExpenses[i].value;
+            appData.optionalExpenses[i] = opt;
+            // if(appData.optionalExpenses[3] != null){
+            //     appData.optionalExpenses = {};
+            // }
+
+            optionalexpensesValue.textContent += appData.optionalExpenses[i] + " ";
+
+        }
+    }
 });
 
 //Рассчитать
@@ -208,4 +222,15 @@ function testOptionalExpenses() {
     } else {
         btnAcceptTwo.disabled = true;
     }
+}
+
+
+
+
+function Ru(obj) {
+    obj.value = obj.value.replace(/[^а-яё]/ig, '');
+}
+
+function onlyNum(obj) {
+    obj.value = obj.value.replace(/[^0-9]/ig, '');
 }
