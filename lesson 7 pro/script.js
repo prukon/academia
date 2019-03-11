@@ -21,22 +21,44 @@ function sayHello() {
     setMinutes.textContent = minutes + ":";;
     setSeconds.textContent = seconds;
 }
+
 let btn = document.querySelector('.btn'),
     elem = document.querySelector('.wrapper');
 
-function myAnimation() {
-    let pos = 0;
-    let id = setInterval(frame, 10);
+// function myAnimation() {
+//     let pos = 0;
+//     let id = setInterval(frame, 10);
 
-    function frame() {
-        if (pos == 300) {
-            clearInterval(id);
-        } else {
-            pos++;
-            elem.style.top = pos + 'px';
+//     function frame() {
+//         if (pos == 300) {
+//             clearInterval(id);
+//         } else {
+//             pos++;
+//             elem.style.top = pos + 'px';
           
-        }
+//         }
+//     }
+// }
+// btn.addEventListener('click', myAnimation);
+
+
+
+//__
+
+btn.onclick = function() {
+  animate(function(timePassed) {
+    wrapper.style.top  = timePassed / 5 + 'px';
+  }, 1000);
+};
+
+function animate(draw, duration) {
+  let start = performance.now();
+  requestAnimationFrame(function animate(time) {
+    let timePassed = time - start;
+    draw(timePassed);
+    if (timePassed < duration) {
+      requestAnimationFrame(animate);
     }
+  });
 }
 
-btn.addEventListener('click', myAnimation);
