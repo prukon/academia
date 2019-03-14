@@ -11,31 +11,38 @@ for (let i = start; i <= end; i++) {
         }
 //  console.log(i + "/" + n + " = " + del);
      }
-    // console.log("have: " + have)
      for(let j = 0; j <have.length; j++){
          summOne = +summOne + have[j];
      }
      mass[i] = summOne;
      summOne = []
      have = []
-    //  console.log(mass)
 }
-
-
 
 a=[];
 mass.forEach(function(item, i){
-
-    // for (j= start; j < end; j++){
-    //     console.log(j + " - " +  item  + " - " + i);
-
-    // }
     m = i + "  " + item ;
-    console.log(i + "  " + item );
-// a.push(m);
-
+    console.log(i + " =  " + item );
 });
-// console.log(a)
+
+
+var result = {};
+
+Object.entries(mass)
+.forEach(item=>{
+	if( result[item[1]] == item[0])
+  	return;
+	if(mass[item[1]] == item[0])
+  	result[item[0]] = item[1];
+})
+
+document.getElementById("display").innerHTML = `Исходные данные:
+${JSON.stringify(mass)}
+
+Результат: 
+${JSON.stringify(result)}`;
+
+
 
 }
 getFriendlyNumbers(1,300);
