@@ -13,7 +13,7 @@ function makeArray() {
     for (let i = 0; i < 10; i++) {
         var item = function () {
             console.log(i);
-        }
+        };
         items.push(item);
     }
     return items;
@@ -33,7 +33,7 @@ let obj = {
     nember:5,
     sayNamber:function(){
         let say=()=> {
-            console.log(this)
+            console.log(this);
         };
         say();
     }
@@ -43,7 +43,7 @@ obj.sayNamber();
 
  function calcOrDouble (number, basis = 2) {
     // basis = basis || 2; //es 5
-    console.log(number*basis)
+    console.log(number*basis);
  }
 
  calcOrDouble(3,5);
@@ -55,7 +55,6 @@ class Rectangle {
         this.height = height;
         this.width = width;
     }
-//экзепляр класса
     calcArea(){ 
         return this.height * this.width;
     }
