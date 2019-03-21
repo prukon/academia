@@ -32,10 +32,10 @@ window.addEventListener('DomContentLoaded', function () {
     })
 })
 
-// new RegExp('pattern', 'flags');
+// new RegExp('paпетgtnttern', 'flags');
 // /pattern/
-// let ans = prompt('Введите ваше имя');
-// let reg = /n/i;
+let ans = prompt('Введите ваше имя');
+let reg = /n/i;
 // console.log(ans.search(reg));
 // let reg = /n/g;
 // console.log(ans.match(reg));
