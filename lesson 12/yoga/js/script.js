@@ -141,6 +141,12 @@ function sendForm(elem) {
         elem.appendChild(statusMessage);
         let formData = new FormData(elem);
 
+        let obj = {};
+        formData.forEach(function (value, key) {
+            obj[key] = value;
+        });
+        let json = JSON.stringify(obj);
+
         function postData(data) {
             return new Promise(function (resolve, reject) {
                 let request = new XMLHttpRequest();
@@ -167,21 +173,18 @@ function sendForm(elem) {
             }
         }
 
-        postData(formData)
+        postData(json)
             .then(() => statusMessage.innerHTML = message.loading)
             .then(() => {
                 //   tnanksModal.style.display = 'block';
                 //  popup.style.display = 'none';
-                statusMessage.innerHTML = "";
+                statusMessage.innerHTML = message.success;
             })
             .catch(() => statusMessage.innerHTML = message.failure)
             .then(ClearInput)
     });
 
-
-
 }
-
 for (let i = 0; i < phone.length; i++) {
     phone[i].addEventListener('input', function () {
         phone[i].value = phone[i].value.replace(/[^+0-9]/g, "");
