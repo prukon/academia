@@ -155,11 +155,14 @@ function sendForm(elem) {
                 request.onreadystatechange = function () {
                     if (request.readyState < 4) {
                         resolve()
+                        console.log('1')
                     } else if (request.readyState === 4) {
                         if (request.status == 200) {
                             resolve()
+                            console.log('2')
                         } else {
                             reject()
+                            console.log('3')
                         }
                     }
                 }
@@ -176,14 +179,11 @@ function sendForm(elem) {
         postData(json)
             .then(() => statusMessage.innerHTML = message.loading)
             .then(() => {
-                //   tnanksModal.style.display = 'block';
-                //  popup.style.display = 'none';
                 statusMessage.innerHTML = message.success;
             })
             .catch(() => statusMessage.innerHTML = message.failure)
             .then(ClearInput)
     });
-
 }
 for (let i = 0; i < phone.length; i++) {
     phone[i].addEventListener('input', function () {
