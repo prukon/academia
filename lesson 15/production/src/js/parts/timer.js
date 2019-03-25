@@ -1,7 +1,7 @@
 "use strict";
 
 function timer() {
-  var deadline = '2019-03-18';
+  var deadline = '2019-03-28';
 
   var getTimeRemaining = function getTimeRemaining(endtime) {
     var t = Date.parse(endtime) - Date.parse(new Date()),
