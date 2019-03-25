@@ -3557,15 +3557,13 @@ function form() {
       event.preventDefault();
       elem.appendChild(statusMessage);
       var formData = new FormData(elem);
-      var obj = {}; // formData.forEach(function (value, key) {
-      //   obj[key] = value;
-      // });
+      var obj = {};
+      formData.forEach(function (value, key) {
+        obj[key] = value;
+      }); // for(let i=0; i<formData.length;i++){
+      //   obj[i] = formData[i];
+      // };
 
-      for (var _i = 0; _i < formData.length; _i++) {
-        obj[_i] = formData[_i];
-      }
-
-      ;
       var json = JSON.stringify(obj);
 
       function postData(data) {

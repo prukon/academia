@@ -20,12 +20,12 @@ function form() {
       elem.appendChild(statusMessage);
       var formData = new FormData(elem);
       var obj = {};
-      // formData.forEach(function (value, key) {
-      //   obj[key] = value;
-      // });
-      for(let i=0; i<formData.length;i++){
-        obj[i] = formData[i];
-      };
+      formData.forEach(function (value, key) {
+        obj[key] = value;
+      });
+      // for(let i=0; i<formData.length;i++){
+      //   obj[i] = formData[i];
+      // };
       var json = JSON.stringify(obj);
 
       function postData(data) {

@@ -15,16 +15,11 @@
     "@babel/polyfill": "^7.4.0",
     "@babel/preset-env": "^7.4.2",
     "babel-loader": "^8.0.5",
+    "babel-plugin-es6-promise": "^1.1.1",
     "core-js": "^2.6.5",
     "es6-promise": "^4.2.6",
     "formdata-polyfill": "^3.0.17",
-    "i": "^0.3.6",
-    "install": "^0.12.2",
-    "npx": "^10.2.0",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"
-  },
-  "dependencies": {
-    "babel-plugin-es6-promise": "^1.1.1"
   }
 }
