@@ -51,5 +51,5 @@ if(event.target && event.target.target == 'BUTTON'){
 //if(event.target && event.сlassList.contains('first')){
 
     console.log(333);
-}
+}}
 })
