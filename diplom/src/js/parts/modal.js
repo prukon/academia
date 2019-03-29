@@ -1,31 +1,27 @@
 "use strict";
 
 function modal() {
-  var more = document.querySelector('.more'),
-      overlay = document.querySelector('.overlay'),
-      close = document.querySelector('.popup-close'),
-      descriptionBtn = document.querySelectorAll('.description-btn');
-  more.addEventListener('click', function () {
-    overlay.style.display = 'block';
-    this.classList.add('more-splash');
-    document.body.style.overflow = 'hidden';
-  });
 
-  for (var i = 0; i < descriptionBtn.length; i++) {
+  //let more = document.querySelector('.more');
+  let overlay = document.querySelector('.popup-design');
+  let close = document.querySelectorAll('.popup-close');
+  let descriptionBtn = document.querySelectorAll('.button-design');
+
+  for (let i = 0; i < descriptionBtn.length; i++) {
     descriptionBtn[i].addEventListener('click', function () {
       overlay.style.display = 'block';
-      this.classList.add('more-splash');
-      document.body.style.overflow = 'hidden';
+      //   this.classList.add('more-splash');
+      //  document.body.style.overflow = 'hidden';
+    });
+  }
+  for (let i = 0; i < close.length; i++) {
+    close[i].addEventListener('click', function () {
+      console.log(2);
+      overlay.style.display = 'none';
+      document.body.style.overflow = '';
     });
   }
 
-  close.addEventListener('click', function () {
-    overlay.style.display = 'none';
-    more.classList.remove('more-splash');
-    document.body.style.overflow = '';
-  });
 }
-
 // module.exports = modal;
-
 export default modal;

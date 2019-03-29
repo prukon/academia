@@ -1,12 +1,12 @@
 //slider
 function slider() {
-    console.log(1);
+
     "use strict";
 
     let slideIndex = 1,
         slides = document.querySelectorAll('.main-slider-item');
     showSlides(slideIndex);
-    setInterval(updateClock, 3000);
+    setInterval(updateClock, 4000);
 
 
     function showSlides(n) {
@@ -14,9 +14,13 @@ function slider() {
             slideIndex = 1;
         }
         slides.forEach(function (item) {
+            slides[slideIndex - 1].classList.add("animated");
+            slides[slideIndex - 1].classList.add("bounceInUp");
             return item.style.display = 'none';
         });
         slides[slideIndex - 1].style.display = 'block';
+        slides[slideIndex - 1].classList.add("animated");
+        slides[slideIndex - 1].classList.add("fadeInDown");
     }
 
     function plusSlides(n) {
@@ -27,6 +31,4 @@ function slider() {
         plusSlides(1);
     }
 }
-
-
 module.exports = slider;

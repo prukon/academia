@@ -157,13 +157,14 @@ module.exports = g;
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _parts_slider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./parts/slider */ "./src/js/parts/slider.js");
 /* harmony import */ var _parts_slider__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_parts_slider__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _parts_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./parts/modal */ "./src/js/parts/modal.js");
 //require('es6-promise').polyfill();
 __webpack_require__(/*! formdata-polyfill */ "./node_modules/formdata-polyfill/formdata.min.js");
+
 
  // import calc from "./parts/calc";
 // import tabs from "./parts/tabs";
 // import timer from "./parts/timer";
-// import modal from "./parts/modal";
 // import form from "./parts/form";
 
 window.addEventListener('DOMContentLoaded', function () {
@@ -174,11 +175,11 @@ window.addEventListener('DOMContentLoaded', function () {
   //     form = require('./parts/form'),
   //     slider = require('./parts/slider');
 
-  _parts_slider__WEBPACK_IMPORTED_MODULE_0___default()(); // calc();
+  _parts_slider__WEBPACK_IMPORTED_MODULE_0___default()();
+  Object(_parts_modal__WEBPACK_IMPORTED_MODULE_1__["default"])(); // calc();
   // form();
   // tabs();
   // timer();
-  // modal();
 });
 
 if ('NodeList' in window && !NodeList.prototype.forEach) {
@@ -195,6 +196,44 @@ if ('NodeList' in window && !NodeList.prototype.forEach) {
 
 /***/ }),
 
+/***/ "./src/js/parts/modal.js":
+/*!*******************************!*\
+  !*** ./src/js/parts/modal.js ***!
+  \*******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+
+
+function modal() {
+  //let more = document.querySelector('.more');
+  var overlay = document.querySelector('.popup-design');
+  var close = document.querySelectorAll('.popup-close');
+  var descriptionBtn = document.querySelectorAll('.button-design');
+
+  for (var i = 0; i < descriptionBtn.length; i++) {
+    descriptionBtn[i].addEventListener('click', function () {
+      overlay.style.display = 'block'; //   this.classList.add('more-splash');
+      //  document.body.style.overflow = 'hidden';
+    });
+  }
+
+  for (var _i = 0; _i < close.length; _i++) {
+    close[_i].addEventListener('click', function () {
+      console.log(2);
+      overlay.style.display = 'none';
+      document.body.style.overflow = '';
+    });
+  }
+} // module.exports = modal;
+
+
+/* harmony default export */ __webpack_exports__["default"] = (modal);
+
+/***/ }),
+
 /***/ "./src/js/parts/slider.js":
 /*!********************************!*\
   !*** ./src/js/parts/slider.js ***!
@@ -204,13 +243,12 @@ if ('NodeList' in window && !NodeList.prototype.forEach) {
 
 //slider
 function slider() {
-  console.log(1);
   "use strict";
 
   var slideIndex = 1,
       slides = document.querySelectorAll('.main-slider-item');
   showSlides(slideIndex);
-  setInterval(updateClock, 3000);
+  setInterval(updateClock, 4000);
 
   function showSlides(n) {
     if (n > slides.length) {
@@ -218,9 +256,13 @@ function slider() {
     }
 
     slides.forEach(function (item) {
+      slides[slideIndex - 1].classList.add("animated");
+      slides[slideIndex - 1].classList.add("bounceInUp");
       return item.style.display = 'none';
     });
     slides[slideIndex - 1].style.display = 'block';
+    slides[slideIndex - 1].classList.add("animated");
+    slides[slideIndex - 1].classList.add("fadeInDown");
   }
 
   function plusSlides(n) {
