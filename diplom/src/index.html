@@ -85,7 +85,7 @@
 				</div>
 				<div class="col-md-3 col-md-offset-3 col-sm-offset-0 col-sm-4 hidden-xs">
 					<div class=file_uplo>
-						<button class="bounceInDown" type=button>1Загрузить фотографию</button>
+						<button class="bounceInDown" type=button>Загрузить фотографию</button>
 						<div>Файл не выбран</div>
 						<input type=file name=upload>
 					</div>
@@ -236,7 +236,7 @@
 			<h2>Рассчитайте стоимость и получите скидку 30%</h2>
 			<div class=row>
 				<div class="col-md-4 col-offset-1">
-					<form class=form action=# method=POST enctype=multipart/form-data> <h4>Загрузите свое фото</h4>
+					<form class="form action=# class="" method=POST enctype=multipart/form-data> <h4>Загрузите свое фото</h4>
 						<div class=file_upload>
 							<button type=button>Загрузить фотографию</button>
 							<div>Файл не выбран</div>
@@ -643,8 +643,8 @@
 			<div class="col-md-10 col-md-offset-1">
 				<form action=mailer/smart.php method=POST>
 					<div class=input-wrapper>
-						<input type=text name=name placeholder="Ваше имя" required>
-						<input type=text name=phone placeholder="Ваш телефон" required>
+						<input type=text name=name class="name-value" placeholder="Ваше имя" required>
+						<input type=text name=phone class="phone-number" placeholder="Ваш телефон" required>
 						<input type=text name=email placeholder="Ваш E-mail">
 						<input class=input-text name=message type=text placeholder="Задайте ваш вопрос здесь" required>
 					</div>
@@ -713,8 +713,8 @@
 				<h4>Остались вопросы? Закажите обратный звонок</h4>
 				<div class=main-form>
 					<form class=form action=mailer/smart.php method=POST>
-						<input type=text name=name placeholder="Ваше имя" required>
-						<input type=text name=phone placeholder="Ваш телефон" required>
+						<input type=text name=name class="name-value" placeholder="Ваше имя" required>
+						<input type=text name=phone class="phone-number" placeholder="Ваш телефон" required>
 						<button class="button button-order"
 							onclick="yaCounter46630539.reachGoal('btn-consultation'); return true;">Получить
 							консультацию</button>
@@ -737,7 +737,7 @@
 		<div class=popup-dialog>
 			<div class=popup-content>
 				<button class=popup-close>&times;</button>
-				<form action=method=POST enctype=multipart/form-data> <h4>Заказать дизайн портрета</h4>
+				<form action=method=POST class="getDesign" enctype=multipart/form-data> <h4>Заказать дизайн портрета</h4>
 					<div class=file_uploa>
 						<button type=button>Загрузить фотографию</button>
 						<div>Файл не выбран</div>
@@ -745,10 +745,10 @@
 					</div>
 					<div class=main-form>
 						<div class=form>
-							<input type=text name=name placeholder="Ваше имя" required>
-							<input type=text name=phone placeholder="Ваш телефон" required>
+							<input type=text name=name class="name-value" placeholder="Ваше имя" required>
+							<input type=text name=phone class="phone-number" placeholder="Ваш телефон" required>
 							<input type=text name=email placeholder="Ваш e-mail">
-							<textarea name=message placeholder=Комментарий rows=2></textarea>
+							<textarea name=message  class="comment-value" placeholder=Комментарий rows=2></textarea>
 							<button class="button button-order">Отправить дизайнеру</button>
 						</div>
 					</div>

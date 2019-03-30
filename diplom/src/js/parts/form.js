@@ -1,125 +1,138 @@
-function ajax() {
-
-	//form in modal///////////////////////////////////////////////////////////////////////////////////////////////////////
-
-	let contactForm = document.getElementById('form'),
-		mainFormInput = document.querySelector(".popup-form__input");
-
-	mainFormInput.addEventListener("input", function () {
-
-		mainFormInput.value = mainFormInput.value.replace(/[^\d\+]/g, ""); //works
-		if (mainFormInput.value[0] != "+") {
-			mainFormInput.value = "+";
-		}
-	});
-	let contactInput = contactForm.getElementsByTagName("input")[1]; //поле с телефоном
-
-	contactInput.addEventListener("input", () => {
-
-		contactInput.value = contactInput.value.replace(/[^\d\+]/g, ""); //works
-		if (contactInput.value[0] != "+") {
-			contactInput.value = "+";
-		}
-	});
+//"use strict";
 
 
-	document.body.addEventListener("submit", e => {
-		e.preventDefault();
-		if (e.target.id == 'form' || e.target.classList.contains('main-form')) {
-			sendForm(e.target);
-		}
+function form() {
+	var message = {
+			loading: 'Идет отправка...',
+			success: 'Отправлено',
+			failure: 'Ошибка'
+		},
+
+		form = document.querySelector('.getDesign'),
+		input = form.getElementsByTagName('input'),
+		statusMessage = document.createElement('div'),
+		insideForm = document.querySelector('.getDesign .main-form'),
+		insideFormH4 = document.querySelector('.getDesign h4'),
+		insideFormFile = document.querySelector('.getDesign .file_uploa'),
+		phone = document.querySelectorAll('.phone-number'),
+		commentValue = document.querySelectorAll('.comment-value'),		
+		name = document.querySelectorAll('.name-value');
 
 
-	});
+		
 
 
+	//  form2 = document.querySelector('#form'),
+	//   popup = document.querySelector('.popup');
+	statusMessage.classList.add('status');
 
 	function sendForm(elem) {
-
-
-		let message = {
-				loading: "Загрузка....",
-				success: "Спасибо! Скоро мы с вами свяжемся!",
-				failure: "Что-то пошло не так...",
-				hide: ""
-			},
-			statusMessage = document.createElement('div'),
-			inputs = document.querySelectorAll('input'),
-			clearInputs = () => {
-				inputs.forEach(item => {
-					item.value = '';
-				});
-			},
-			hideModal = () => {
-				let overlay = document.querySelector('.overlay');
-
-				if (overlay.style.display == 'block') {
-					setTimeout(() => {
-						overlay.style.display = 'none';
-						document.body.style.overflow = '';
-						statusMessage.innerHTML = message.hide;
-					}, 2000);
-				} else {
-					setTimeout(() => {
-
-						statusMessage.innerHTML = message.hide;
-					}, 2000);
-				}
-
-			};
-
-
-		statusMessage.classList.add('status');
-
-		elem.appendChild(statusMessage);
-		let formData = new FormData(elem),
-			obj = {};
-
-		formData.forEach(function (value, key) {
-			obj[key] = value;
-		});
-
-
-		function PostData() {
-			return new Promise(function (resolve, reject) {
-				let request = new XMLHttpRequest();
-				let json = JSON.stringify(obj);
-				request.open("POST", "../../src/server.php");
-
-				request.setRequestHeader(
-					"Content-Type",
-					"application/json; charset=utf-8"
-				);
-
-
-
-				request.addEventListener("readystatechange", () => {
-					if (request.readyState < 4) {
-						resolve();
-					} else if (request.readyState === 4 && request.status == 200) {
-
-						resolve();
-
-					} else {
-						reject();
-					}
-				});
-				request.send(json);
+		elem.addEventListener('submit', function (event) {
+			event.preventDefault();
+			elem.appendChild(statusMessage);
+			var formData = new FormData(elem);
+			var obj = {};
+			formData.forEach(function (value, key) {
+				obj[key] = value;
 			});
-		} //end PostData
+			// for(let i=0; i<formData.length;i++){
+			//   obj[i] = formData[i];
+			// };
+			var json = JSON.stringify(obj);
+
+			function postData(data) {
+				return new Promise(function (resolve, reject) {
+					var request = new XMLHttpRequest();
+					request.open('POST', 'server.php');
+					request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+
+					request.onreadystatechange = function () {
+						if (request.readyState < 4) {
+							resolve();
+							console.log('1');
+						} else if (request.readyState === 4) {
+							if (request.status == 200) {
+								resolve();
+								console.log('2');
+							} else {
+								reject();
+								console.log('3');
+							}
+						}
+					};
+
+					request.send(data);
+				});
+			} //end postData
+
+
+			function ClearInput() {
+				for (var i = 0; i < input.length; i++) {
+					input[i].value = '';
+				}
+			}
+
+			postData(json).then(function () {
+				return statusMessage.innerHTML = message.loading;
+			}).then(function () {
+				insideForm.style.display = "none";
+				insideFormH4.style.display = "none";
+				insideFormFile.style.display = "none";
+				statusMessage.innerHTML = message.success;
 
 
 
-		PostData()
-			.then(() => statusMessage.innerHTML = message.loading)
-			.then(() => statusMessage.innerHTML = message.success, )
-			.catch(() => statusMessage.innerHTML = message.failure)
-			.then(() => clearInputs())
-			.then(() => hideModal());
+			}).catch(function () {
+				insideForm.style.display = "none";
+				insideFormH4.style.display = "none";
+				insideFormFile.style.display = "none";
+				return statusMessage.innerHTML = message.failure;
+			}).then(ClearInput);
+		});
 
 
 
 	}
 
-};
-export default ajax;
+	  function validPhone(i) {
+	    phone[i].addEventListener('input', function () {
+	      phone[i].value = phone[i].value.replace(/[^0-9]/g, "").slice(0, 11);
+	    });
+	  };
+
+	  for (var i = 0; i < phone.length; i++) {
+	    validPhone(i);
+	  }
+
+	  function validName(i) {
+	    name[i].addEventListener('input', function () {
+			name[i].value = name[i].value.replace(/[^А-я]/g, "");
+	    });
+	  };
+	  for (var i = 0; i < name.length; i++) {
+	    validName(i);
+	  }
+	  function validComment(i) {
+	    commentValue[i].addEventListener('input', function () {
+			commentValue[i].value = commentValue[i].value.replace(/[^А-я]/g, "");
+	    });
+	  };
+	  for (var i = 0; i < commentValue.length; i++) {
+	    validComment(i);
+	  }
+
+
+
+	  
+
+
+
+
+
+	sendForm(form);
+	// sendForm(form2);
+}
+
+// module.exports = form;
+
+export default form;

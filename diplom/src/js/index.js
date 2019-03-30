@@ -3,11 +3,15 @@ require('formdata-polyfill');
 
 import slider from "./parts/slider";
 import modal from "./parts/modal";
+import form from "./parts/form";
+import addMore from "./parts/addMore";
 // import calc from "./parts/calc";
+
+
 // import tabs from "./parts/tabs";
 // import timer from "./parts/timer";
 
-// import form from "./parts/form";
+
 
 
 
@@ -24,8 +28,10 @@ window.addEventListener('DOMContentLoaded', function () {
 
   slider();
   modal();
+  form();
+  addMore();
   // calc();
-  // form();
+
   // tabs();
   // timer();
 

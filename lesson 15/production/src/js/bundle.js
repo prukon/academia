@@ -3534,110 +3534,96 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
 var _Promise = typeof Promise === 'undefined' ? __webpack_require__(/*! es6-promise */ "./node_modules/es6-promise/dist/es6-promise.js").Promise : Promise;
 
-function ajax() {
-  //form in modal///////////////////////////////////////////////////////////////////////////////////////////////////////
-  var contactForm = document.getElementById('form'),
-      mainFormInput = document.querySelector(".popup-form__input");
-  mainFormInput.addEventListener("input", function () {
-    mainFormInput.value = mainFormInput.value.replace(/[^\d\+]/g, ""); //works
-
-    if (mainFormInput.value[0] != "+") {
-      mainFormInput.value = "+";
-    }
-  });
-  var contactInput = contactForm.getElementsByTagName("input")[1]; //поле с телефоном
-
-  contactInput.addEventListener("input", function () {
-    contactInput.value = contactInput.value.replace(/[^\d\+]/g, ""); //works
-
-    if (contactInput.value[0] != "+") {
-      contactInput.value = "+";
-    }
-  });
-  document.body.addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    if (e.target.id == 'form' || e.target.classList.contains('main-form')) {
-      sendForm(e.target);
-    }
-  });
+function form() {
+  var message = {
+    loading: 'Загрузка...',
+    success: 'Спасибо! Скоро мы с вами свяжемся',
+    failure: 'Что-то пошло не так'
+  },
+      form = document.querySelector('.main-form'),
+      input = form.getElementsByTagName('input'),
+      statusMessage = document.createElement('div'),
+      phone = document.querySelectorAll('.phone'),
+      form2 = document.querySelector('#form'),
+      popup = document.querySelector('.popup');
+  statusMessage.classList.add('status');
 
   function sendForm(elem) {
-    var message = {
-      loading: "Загрузка....",
-      success: "Спасибо! Скоро мы с вами свяжемся!",
-      failure: "Что-то пошло не так...",
-      hide: ""
-    },
-        statusMessage = document.createElement('div'),
-        inputs = document.querySelectorAll('input'),
-        clearInputs = function clearInputs() {
-      inputs.forEach(function (item) {
-        item.value = '';
-      });
-    },
-        hideModal = function hideModal() {
-      var overlay = document.querySelector('.overlay');
+    elem.addEventListener('submit', function (event) {
+      event.preventDefault();
+      elem.appendChild(statusMessage);
+      var formData = new FormData(elem);
+      var obj = {};
+      formData.forEach(function (value, key) {
+        obj[key] = value;
+      }); // for(let i=0; i<formData.length;i++){
+      //   obj[i] = formData[i];
+      // };
 
-      if (overlay.style.display == 'block') {
-        setTimeout(function () {
-          overlay.style.display = 'none';
-          document.body.style.overflow = '';
-          statusMessage.innerHTML = message.hide;
-        }, 2000);
-      } else {
-        setTimeout(function () {
-          statusMessage.innerHTML = message.hide;
-        }, 2000);
-      }
-    };
+      var json = JSON.stringify(obj);
 
-    statusMessage.classList.add('status');
-    elem.appendChild(statusMessage);
-    var formData = new FormData(elem),
-        obj = {};
-    formData.forEach(function (value, key) {
-      obj[key] = value;
-    });
+      function postData(data) {
+        return new _Promise(function (resolve, reject) {
+          var request = new XMLHttpRequest();
+          request.open('POST', 'server.php');
+          request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 
-    function PostData() {
-      return new _Promise(function (resolve, reject) {
-        var request = new XMLHttpRequest();
-        var json = JSON.stringify(obj);
-        request.open("POST", "../../src/server.php");
-        request.setRequestHeader("Content-Type", "application/json; charset=utf-8");
-        request.addEventListener("readystatechange", function () {
-          if (request.readyState < 4) {
-            resolve();
-          } else if (request.readyState === 4 && request.status == 200) {
-            resolve();
-          } else {
-            reject();
-          }
+          request.onreadystatechange = function () {
+            if (request.readyState < 4) {
+              resolve();
+              console.log('1');
+            } else if (request.readyState === 4) {
+              if (request.status == 200) {
+                resolve();
+                console.log('2');
+              } else {
+                reject();
+                console.log('3');
+              }
+            }
+          };
+
+          request.send(data);
         });
-        request.send(json);
-      });
-    } //end PostData
+      } //end postData
 
 
-    PostData().then(function () {
-      return statusMessage.innerHTML = message.loading;
-    }).then(function () {
-      return statusMessage.innerHTML = message.success;
-    }).catch(function () {
-      return statusMessage.innerHTML = message.failure;
-    }).then(function () {
-      return clearInputs();
-    }).then(function () {
-      return hideModal();
+      function ClearInput() {
+        for (var i = 0; i < input.length; i++) {
+          input[i].value = '';
+        }
+      }
+
+      postData(json).then(function () {
+        return statusMessage.innerHTML = message.loading;
+      }).then(function () {
+        statusMessage.innerHTML = message.success;
+      }).catch(function () {
+        return statusMessage.innerHTML = message.failure;
+      }).then(ClearInput);
     });
   }
-}
 
-;
-/* harmony default export */ __webpack_exports__["default"] = (ajax);
+  var _loop = function _loop(i) {
+    phone[i].addEventListener('input', function () {
+      phone[i].value = phone[i].value.replace(/[^+0-9]/g, "");
+    });
+  };
+
+  for (var i = 0; i < phone.length; i++) {
+    _loop(i);
+  }
+
+  sendForm(form);
+  sendForm(form2);
+} // module.exports = form;
+
+
+/* harmony default export */ __webpack_exports__["default"] = (form);
 
 /***/ }),
 
