@@ -3414,8 +3414,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _parts_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./parts/form */ "./src/js/parts/form.js");
 /* harmony import */ var _parts_addMore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./parts/addMore */ "./src/js/parts/addMore.js");
 /* harmony import */ var _parts_calc__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./parts/calc */ "./src/js/parts/calc.js");
+/* harmony import */ var _parts_filter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./parts/filter */ "./src/js/parts/filter.js");
 //require('es6-promise').polyfill();
 __webpack_require__(/*! formdata-polyfill */ "./node_modules/formdata-polyfill/formdata.min.js");
+
 
 
 
@@ -3436,7 +3438,8 @@ window.addEventListener('DOMContentLoaded', function () {
   Object(_parts_modal__WEBPACK_IMPORTED_MODULE_1__["default"])();
   Object(_parts_form__WEBPACK_IMPORTED_MODULE_2__["default"])();
   Object(_parts_addMore__WEBPACK_IMPORTED_MODULE_3__["default"])();
-  Object(_parts_calc__WEBPACK_IMPORTED_MODULE_4__["default"])(); // tabs();
+  Object(_parts_calc__WEBPACK_IMPORTED_MODULE_4__["default"])();
+  Object(_parts_filter__WEBPACK_IMPORTED_MODULE_5__["default"])(); // tabs();
   // timer();
 });
 
@@ -3592,6 +3595,62 @@ function calc() {
 
 
 /* harmony default export */ __webpack_exports__["default"] = (calc);
+
+/***/ }),
+
+/***/ "./src/js/parts/filter.js":
+/*!********************************!*\
+  !*** ./src/js/parts/filter.js ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+
+
+function filter() {
+  var portfolioMenu = document.querySelector(".portfolio-menu");
+  var portfolioWrapper = document.querySelectorAll('.portfolio-wrapper div');
+  var portfolioNo = document.querySelector(".portfolio-no");
+  portfolioMenu.addEventListener('click', function (event) {
+    if (event.target.textContent == 'Все работы') {
+      showPortfolio("all");
+    } else if (event.target.textContent == 'Для влюбленных') {
+      showPortfolio("lovers");
+    } else if (event.target.textContent == 'Для шефа') {
+      showPortfolio("chef");
+    } else if (event.target.textContent == 'Для девушки') {
+      showPortfolio("girl");
+    } else if (event.target.textContent == 'Для парня') {
+      showPortfolio("guy");
+    } else if (event.target.textContent == 'Для бабушки') {
+      hidePortfolio();
+    } else if (event.target.textContent == 'Для дедушки') {
+      hidePortfolio();
+    }
+  });
+
+  function showPortfolio(className) {
+    for (var i = 0; i < portfolioWrapper.length; i++) {
+      portfolioWrapper[i].style.display = "";
+      portfolioNo.style.display = "none";
+
+      if (portfolioWrapper[i].classList.contains(className)) {} else {
+        portfolioWrapper[i].style.display = "none";
+      }
+    }
+  }
+
+  function hidePortfolio() {
+    for (var i = 0; i < portfolioWrapper.length; i++) {
+      portfolioWrapper[i].style.display = "none";
+      portfolioNo.style.display = "block";
+    }
+  }
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (filter);
 
 /***/ }),
 
@@ -3841,7 +3900,8 @@ function slider() {
 
   var slideIndex = 1,
       slides = document.querySelectorAll('.main-slider-item');
-  showSlides(slideIndex); // setInterval(updateClock, 4000);
+  showSlides(slideIndex);
+  setInterval(updateClock, 4000);
 
   function showSlides(n) {
     if (n > slides.length) {

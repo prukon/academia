@@ -6,6 +6,9 @@ import modal from "./parts/modal";
 import form from "./parts/form";
 import addMore from "./parts/addMore";
 import calc from "./parts/calc";
+import filter from "./parts/filter";
+
+
 
 
 // import tabs from "./parts/tabs";
@@ -31,6 +34,7 @@ window.addEventListener('DOMContentLoaded', function () {
   form();
   addMore();
   calc();
+  filter();
 
   // tabs();
   // timer();

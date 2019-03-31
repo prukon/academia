@@ -6,7 +6,7 @@ function slider() {
     let slideIndex = 1,
         slides = document.querySelectorAll('.main-slider-item');
     showSlides(slideIndex);
-   // setInterval(updateClock, 4000);
+   setInterval(updateClock, 4000);
 
 
     function showSlides(n) {
