@@ -3413,14 +3413,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _parts_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./parts/modal */ "./src/js/parts/modal.js");
 /* harmony import */ var _parts_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./parts/form */ "./src/js/parts/form.js");
 /* harmony import */ var _parts_addMore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./parts/addMore */ "./src/js/parts/addMore.js");
+/* harmony import */ var _parts_calc__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./parts/calc */ "./src/js/parts/calc.js");
 //require('es6-promise').polyfill();
 __webpack_require__(/*! formdata-polyfill */ "./node_modules/formdata-polyfill/formdata.min.js");
 
 
 
 
- // import calc from "./parts/calc";
-// import tabs from "./parts/tabs";
+
+ // import tabs from "./parts/tabs";
 // import timer from "./parts/timer";
 
 window.addEventListener('DOMContentLoaded', function () {
@@ -3434,8 +3435,8 @@ window.addEventListener('DOMContentLoaded', function () {
   _parts_slider__WEBPACK_IMPORTED_MODULE_0___default()();
   Object(_parts_modal__WEBPACK_IMPORTED_MODULE_1__["default"])();
   Object(_parts_form__WEBPACK_IMPORTED_MODULE_2__["default"])();
-  Object(_parts_addMore__WEBPACK_IMPORTED_MODULE_3__["default"])(); // calc();
-  // tabs();
+  Object(_parts_addMore__WEBPACK_IMPORTED_MODULE_3__["default"])();
+  Object(_parts_calc__WEBPACK_IMPORTED_MODULE_4__["default"])(); // tabs();
   // timer();
 });
 
@@ -3478,6 +3479,119 @@ function addMore() {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (addMore);
+
+/***/ }),
+
+/***/ "./src/js/parts/calc.js":
+/*!******************************!*\
+  !*** ./src/js/parts/calc.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+ //calcalate
+
+function calc() {
+  var size = document.querySelector('#size');
+  var material = document.querySelector('#material');
+  var options = document.querySelector('#options');
+  var promocode = document.querySelector('.promocode');
+  var totalValue = document.querySelector('.calc-price');
+  var promocodeSum = 1;
+  var sizeSum = 0;
+  var materialSum = 0;
+  var optionsSum = 1;
+  var total;
+  var price = 500;
+  totalValue.innerHTML = 0;
+  size.addEventListener('change', function () {
+    if (size.value == "40x50") {
+      sizeSum = 1;
+    } else if (size.value == "50x70") {
+      sizeSum = 2;
+    } else if (size.value == "70x70") {
+      sizeSum = 3;
+    } else if (size.value == "70x100") {
+      sizeSum = 3;
+    } else {
+      sizeSum = 0;
+    }
+
+    if (promocode.value == "IWANTPOPART") {
+      promocodeSum = 0.7;
+    }
+
+    total = sizeSum * materialSum * optionsSum * promocodeSum * price;
+    total = Math.floor(total);
+    totalValue.innerHTML = total;
+
+    if (totalValue.innerHTML == 0) {
+      totalValue.innerHTML = "";
+    }
+  });
+  material.addEventListener('change', function () {
+    if (material.value == "Холст из волокна") {
+      materialSum = 1;
+    } else if (material.value == "Льняной холст") {
+      materialSum = 2;
+    } else if (material.value == "Холст из натурального хлопка") {
+      materialSum = 3;
+    } else {
+      materialSum = 0;
+    }
+
+    if (promocode.value == "IWANTPOPART") {
+      promocodeSum = 0.7;
+    }
+
+    total = sizeSum * materialSum * optionsSum * promocodeSum * price;
+    total = Math.floor(total);
+    totalValue.innerHTML = total;
+
+    if (totalValue.innerHTML == 0) {
+      totalValue.innerHTML = "";
+    }
+  });
+  options.addEventListener('change', function () {
+    if (options.value == "Покрытие арт-гелем") {
+      optionsSum = 1.2;
+    } else if (options.value == "Экспресс-изготовление") {
+      optionsSum = 1.3;
+    } else if (options.value == "Доставка готовых работ") {
+      optionsSum = 1.4;
+    } else {
+      optionsSum = 1;
+    }
+
+    if (promocode.value == "IWANTPOPART") {
+      promocodeSum = 0.7;
+    }
+
+    total = sizeSum * materialSum * optionsSum * promocodeSum * price;
+    total = Math.floor(total);
+    totalValue.innerHTML = total;
+
+    if (totalValue.innerHTML == 0) {
+      totalValue.innerHTML = "";
+    }
+  });
+  promocode.addEventListener('input', function () {
+    if (promocode.value == "IWANTPOPART") {
+      promocodeSum = 0.7;
+    } else {
+      promocodeSum = 1;
+    }
+
+    total = sizeSum * materialSum * optionsSum * promocodeSum * price;
+    total = Math.floor(total);
+    totalValue.innerHTML = total;
+  });
+} // module.exports = calc;
+
+
+/* harmony default export */ __webpack_exports__["default"] = (calc);
 
 /***/ }),
 

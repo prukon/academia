@@ -5,7 +5,7 @@ import slider from "./parts/slider";
 import modal from "./parts/modal";
 import form from "./parts/form";
 import addMore from "./parts/addMore";
-// import calc from "./parts/calc";
+import calc from "./parts/calc";
 
 
 // import tabs from "./parts/tabs";
@@ -30,7 +30,7 @@ window.addEventListener('DOMContentLoaded', function () {
   modal();
   form();
   addMore();
-  // calc();
+  calc();
 
   // tabs();
   // timer();

@@ -2,52 +2,93 @@
 
 //calcalate
 function calc() {
-  var persons = document.querySelectorAll('.counter-block-input')[0],
-    restDays = document.querySelectorAll('.counter-block-input')[1],
-    place = document.getElementById('select'),
-    totalValue = document.getElementById('total'),
-    personsSum = 0,
-    daysSum = 0,
-    total = 0;
+  let size = document.querySelector('#size');
+  let material = document.querySelector('#material');
+  let options = document.querySelector('#options');
+  let promocode = document.querySelector('.promocode');
+  let totalValue = document.querySelector('.calc-price');
+  let promocodeSum = 1;
+  let sizeSum = 0;
+  let materialSum = 0;
+  let optionsSum = 1;
+  let total;
+  let price = 500;
   totalValue.innerHTML = 0;
 
-
-  persons.addEventListener('change', function () {
-    personsSum = +this.value;
-    total = daysSum * personsSum * 4000;
-    if (restDays.value == '' || persons.value == '' || restDays.value == '0' || persons.value == '0') {
-      totalValue.innerHTML = 0;
+  size.addEventListener('change', function () {
+    if (size.value == "40x50") {
+      sizeSum = 1;
+    } else if (size.value == "50x70") {
+      sizeSum = 2;
+    } else if (size.value == "70x70") {
+      sizeSum = 3;
+    } else if (size.value == "70x100") {
+      sizeSum = 3;
     } else {
-      totalValue.innerHTML = total*place.options[place.selectedIndex].value;
+      sizeSum = 0;
+    }
+    if (promocode.value == "IWANTPOPART") {
+      promocodeSum = 0.7;
+    }
+    total = sizeSum * materialSum * optionsSum * promocodeSum * price;
+    total = Math.floor(total);
+    totalValue.innerHTML = total;
+    if (totalValue.innerHTML == 0) {
+      totalValue.innerHTML = "";
     }
   });
 
-  restDays.addEventListener('change', function () {
-    daysSum = +this.value;
-    total = daysSum * personsSum * 4000;
-
-    if (restDays.value == '' || persons.value == '' || restDays.value == '0' || persons.value == '0') {
-      totalValue.innerHTML = 0;
+  material.addEventListener('change', function () {
+    if (material.value == "Холст из волокна") {
+      materialSum = 1;
+    } else if (material.value == "Льняной холст") {
+      materialSum = 2;
+    } else if (material.value == "Холст из натурального хлопка") {
+      materialSum = 3;
     } else {
-      totalValue.innerHTML = total*place.options[place.selectedIndex].value;
+      materialSum = 0;
+    }
+    if (promocode.value == "IWANTPOPART") {
+      promocodeSum = 0.7;
+    }
+    total = sizeSum * materialSum * optionsSum * promocodeSum * price;
+    total = Math.floor(total);
+    totalValue.innerHTML = total;
+    if (totalValue.innerHTML == 0) {
+      totalValue.innerHTML = "";
     }
   });
 
-  place.addEventListener('change', function () {
-    if (restDays.value == '' || persons.value == '' || restDays.value == '0' || persons.value == '0') {
-      totalValue.innerHTML = 0;
+  options.addEventListener('change', function () {
+    if (options.value == "Покрытие арт-гелем") {
+      optionsSum = 1.2;
+    } else if (options.value == "Экспресс-изготовление") {
+      optionsSum = 1.3;
+    } else if (options.value == "Доставка готовых работ") {
+      optionsSum = 1.4;
     } else {
-      var a = total;
-      totalValue.innerHTML = a * this.options[this.selectedIndex].value;
+      optionsSum = 1;
+    }
+    if (promocode.value == "IWANTPOPART") {
+      promocodeSum = 0.7;
+    }
+    total = sizeSum * materialSum * optionsSum * promocodeSum * price;
+    total = Math.floor(total);
+    totalValue.innerHTML = total;
+    if (totalValue.innerHTML == 0) {
+      totalValue.innerHTML = "";
     }
   });
-
-
-  persons.addEventListener('input', function () {
-    persons.value = persons.value.replace(/[^0-9]/g, "");
+  promocode.addEventListener('input', function () {
+    if (promocode.value == "IWANTPOPART") {
+      promocodeSum = 0.7;
+    } else {
+      promocodeSum = 1;
+    }
+    total = sizeSum * materialSum * optionsSum * promocodeSum * price;
+    total = Math.floor(total);
+    totalValue.innerHTML = total;
   });
-
-
 }
 
 // module.exports = calc;
