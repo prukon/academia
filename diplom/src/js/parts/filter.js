@@ -2,6 +2,7 @@
 
 function filter() {
     let portfolioMenu = document.querySelector(".portfolio-menu");
+    let portfolioItems = document.querySelectorAll(".portfolio-menu li");
     let portfolioWrapper = document.querySelectorAll('.portfolio-wrapper div');
     let portfolioNo = document.querySelector(".portfolio-no");
 
@@ -25,19 +26,28 @@ function filter() {
     });
 
     function showPortfolio(className) {
+        for (let i = 0; i < portfolioItems.length; i++) {
+            portfolioItems[i].classList.remove('active');
+            }
         for (let i = 0; i < portfolioWrapper.length; i++) {
             portfolioWrapper[i].style.display = "";
             portfolioNo.style.display = "none";
-            if (portfolioWrapper[i].classList.contains(className)) {} else {
+            if (portfolioWrapper[i].classList.contains(className)) {
+                event.path[0].classList.add('active');
+            } else {
                 portfolioWrapper[i].style.display = "none";
             }
         }
     }
 
     function hidePortfolio() {
+        for (let i = 0; i < portfolioItems.length; i++) {
+            portfolioItems[i].classList.remove('active');
+            }
         for (let i = 0; i < portfolioWrapper.length; i++) {
             portfolioWrapper[i].style.display = "none";
             portfolioNo.style.display = "block";
+            event.path[0].classList.add('active');
         }
     }
 }

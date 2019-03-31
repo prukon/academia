@@ -3415,8 +3415,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _parts_addMore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./parts/addMore */ "./src/js/parts/addMore.js");
 /* harmony import */ var _parts_calc__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./parts/calc */ "./src/js/parts/calc.js");
 /* harmony import */ var _parts_filter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./parts/filter */ "./src/js/parts/filter.js");
+/* harmony import */ var _parts_pictures__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./parts/pictures */ "./src/js/parts/pictures.js");
 //require('es6-promise').polyfill();
 __webpack_require__(/*! formdata-polyfill */ "./node_modules/formdata-polyfill/formdata.min.js");
+
 
 
 
@@ -3439,7 +3441,8 @@ window.addEventListener('DOMContentLoaded', function () {
   Object(_parts_form__WEBPACK_IMPORTED_MODULE_2__["default"])();
   Object(_parts_addMore__WEBPACK_IMPORTED_MODULE_3__["default"])();
   Object(_parts_calc__WEBPACK_IMPORTED_MODULE_4__["default"])();
-  Object(_parts_filter__WEBPACK_IMPORTED_MODULE_5__["default"])(); // tabs();
+  Object(_parts_filter__WEBPACK_IMPORTED_MODULE_5__["default"])();
+  Object(_parts_pictures__WEBPACK_IMPORTED_MODULE_6__["default"])(); // tabs();
   // timer();
 });
 
@@ -3508,7 +3511,6 @@ function calc() {
   var optionsSum = 1;
   var total;
   var price = 500;
-  totalValue.innerHTML = 0;
   size.addEventListener('change', function () {
     if (size.value == "40x50") {
       sizeSum = 1;
@@ -3531,7 +3533,7 @@ function calc() {
     totalValue.innerHTML = total;
 
     if (totalValue.innerHTML == 0) {
-      totalValue.innerHTML = "";
+      totalValue.innerHTML = "Для расчета нужно выбрать размер картины и материал картины";
     }
   });
   material.addEventListener('change', function () {
@@ -3554,7 +3556,7 @@ function calc() {
     totalValue.innerHTML = total;
 
     if (totalValue.innerHTML == 0) {
-      totalValue.innerHTML = "";
+      totalValue.innerHTML = "Для расчета нужно выбрать размер картины и материал картины";
     }
   });
   options.addEventListener('change', function () {
@@ -3577,7 +3579,7 @@ function calc() {
     totalValue.innerHTML = total;
 
     if (totalValue.innerHTML == 0) {
-      totalValue.innerHTML = "";
+      totalValue.innerHTML = "Для расчета нужно выбрать размер картины и материал картины";
     }
   });
   promocode.addEventListener('input', function () {
@@ -3590,7 +3592,9 @@ function calc() {
     total = sizeSum * materialSum * optionsSum * promocodeSum * price;
     total = Math.floor(total);
     totalValue.innerHTML = total;
-  });
+  }); // if (totalValue.innerHTML == 0) {
+  //   totalValue.innerHTML = "";
+  // }
 } // module.exports = calc;
 
 
@@ -3611,6 +3615,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function filter() {
   var portfolioMenu = document.querySelector(".portfolio-menu");
+  var portfolioItems = document.querySelectorAll(".portfolio-menu li");
   var portfolioWrapper = document.querySelectorAll('.portfolio-wrapper div');
   var portfolioNo = document.querySelector(".portfolio-no");
   portfolioMenu.addEventListener('click', function (event) {
@@ -3632,20 +3637,31 @@ function filter() {
   });
 
   function showPortfolio(className) {
-    for (var i = 0; i < portfolioWrapper.length; i++) {
-      portfolioWrapper[i].style.display = "";
+    for (var i = 0; i < portfolioItems.length; i++) {
+      portfolioItems[i].classList.remove('active');
+    }
+
+    for (var _i = 0; _i < portfolioWrapper.length; _i++) {
+      portfolioWrapper[_i].style.display = "";
       portfolioNo.style.display = "none";
 
-      if (portfolioWrapper[i].classList.contains(className)) {} else {
-        portfolioWrapper[i].style.display = "none";
+      if (portfolioWrapper[_i].classList.contains(className)) {
+        event.path[0].classList.add('active');
+      } else {
+        portfolioWrapper[_i].style.display = "none";
       }
     }
   }
 
   function hidePortfolio() {
-    for (var i = 0; i < portfolioWrapper.length; i++) {
-      portfolioWrapper[i].style.display = "none";
+    for (var i = 0; i < portfolioItems.length; i++) {
+      portfolioItems[i].classList.remove('active');
+    }
+
+    for (var _i2 = 0; _i2 < portfolioWrapper.length; _i2++) {
+      portfolioWrapper[_i2].style.display = "none";
       portfolioNo.style.display = "block";
+      event.path[0].classList.add('active');
     }
   }
 }
@@ -3884,6 +3900,58 @@ function modal() {
 
 
 /* harmony default export */ __webpack_exports__["default"] = (modal);
+
+/***/ }),
+
+/***/ "./src/js/parts/pictures.js":
+/*!**********************************!*\
+  !*** ./src/js/parts/pictures.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+
+
+function pictures() {
+  var sizesBlock = document.querySelectorAll('.sizes-block'); //Добавляем
+
+  sizesBlock[0].addEventListener('mouseover', function () {
+    showPictures(0, "img/sizes-1-1.png", true);
+  });
+  sizesBlock[1].addEventListener('mouseover', function () {
+    showPictures(1, "img/sizes-2-1.png", true);
+  });
+  sizesBlock[2].addEventListener('mouseover', function () {
+    showPictures(2, "img/sizes-3-1.png", true);
+  });
+  sizesBlock[3].addEventListener('mouseover', function () {
+    showPictures(3, "img/sizes-4-1.png", true);
+  }); //убираем
+
+  sizesBlock[0].addEventListener('mouseout', function () {
+    showPictures(0, "img/sizes-1.png", false);
+  });
+  sizesBlock[1].addEventListener('mouseout', function () {
+    showPictures(1, "img/sizes-2.png", false);
+  });
+  sizesBlock[2].addEventListener('mouseout', function () {
+    showPictures(2, "img/sizes-3.png", false);
+  });
+  sizesBlock[3].addEventListener('mouseout', function () {
+    showPictures(3, "img/sizes-4.png", false);
+  });
+
+  function showPictures(number, url, type) {
+    sizesBlock[number].children[0].src = url;
+    sizesBlock[number].children[1].hidden = type;
+    sizesBlock[number].children[2].hidden = type;
+    sizesBlock[number].children[3].hidden = type;
+  }
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (pictures);
 
 /***/ }),
 

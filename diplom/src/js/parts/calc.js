@@ -13,7 +13,7 @@ function calc() {
   let optionsSum = 1;
   let total;
   let price = 500;
-  totalValue.innerHTML = 0;
+  
 
   size.addEventListener('change', function () {
     if (size.value == "40x50") {
@@ -34,7 +34,7 @@ function calc() {
     total = Math.floor(total);
     totalValue.innerHTML = total;
     if (totalValue.innerHTML == 0) {
-      totalValue.innerHTML = "";
+      totalValue.innerHTML = "Для расчета нужно выбрать размер картины и материал картины";
     }
   });
 
@@ -55,7 +55,7 @@ function calc() {
     total = Math.floor(total);
     totalValue.innerHTML = total;
     if (totalValue.innerHTML == 0) {
-      totalValue.innerHTML = "";
+      totalValue.innerHTML = "Для расчета нужно выбрать размер картины и материал картины";
     }
   });
 
@@ -76,7 +76,7 @@ function calc() {
     total = Math.floor(total);
     totalValue.innerHTML = total;
     if (totalValue.innerHTML == 0) {
-      totalValue.innerHTML = "";
+      totalValue.innerHTML = "Для расчета нужно выбрать размер картины и материал картины";
     }
   });
   promocode.addEventListener('input', function () {
@@ -89,6 +89,11 @@ function calc() {
     total = Math.floor(total);
     totalValue.innerHTML = total;
   });
+
+  // if (totalValue.innerHTML == 0) {
+  //   totalValue.innerHTML = "";
+  // }
+
 }
 
 // module.exports = calc;

@@ -7,7 +7,7 @@ import form from "./parts/form";
 import addMore from "./parts/addMore";
 import calc from "./parts/calc";
 import filter from "./parts/filter";
-
+import pictures from "./parts/pictures";
 
 
 
@@ -35,7 +35,7 @@ window.addEventListener('DOMContentLoaded', function () {
   addMore();
   calc();
   filter();
-
+  pictures();
   // tabs();
   // timer();
 
