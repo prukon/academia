@@ -9,6 +9,10 @@ import calc from "./parts/calc";
 import filter from "./parts/filter";
 import pictures from "./parts/pictures";
 import gorizontalSlider from "./parts/gorizontalSlider.js";
+import dropmenu from "./parts/dropmenu.js";
+
+
+
 
 
 
@@ -40,6 +44,7 @@ window.addEventListener('DOMContentLoaded', function () {
   filter();
   pictures();
   gorizontalSlider();
+  dropmenu();
   // tabs();
   // timer();
 
