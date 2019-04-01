@@ -3416,8 +3416,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _parts_calc__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./parts/calc */ "./src/js/parts/calc.js");
 /* harmony import */ var _parts_filter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./parts/filter */ "./src/js/parts/filter.js");
 /* harmony import */ var _parts_pictures__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./parts/pictures */ "./src/js/parts/pictures.js");
+/* harmony import */ var _parts_gorizontalSlider_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./parts/gorizontalSlider.js */ "./src/js/parts/gorizontalSlider.js");
 //require('es6-promise').polyfill();
 __webpack_require__(/*! formdata-polyfill */ "./node_modules/formdata-polyfill/formdata.min.js");
+
 
 
 
@@ -3442,7 +3444,8 @@ window.addEventListener('DOMContentLoaded', function () {
   Object(_parts_addMore__WEBPACK_IMPORTED_MODULE_3__["default"])();
   Object(_parts_calc__WEBPACK_IMPORTED_MODULE_4__["default"])();
   Object(_parts_filter__WEBPACK_IMPORTED_MODULE_5__["default"])();
-  Object(_parts_pictures__WEBPACK_IMPORTED_MODULE_6__["default"])(); // tabs();
+  Object(_parts_pictures__WEBPACK_IMPORTED_MODULE_6__["default"])();
+  Object(_parts_gorizontalSlider_js__WEBPACK_IMPORTED_MODULE_7__["default"])(); // tabs();
   // timer();
 });
 
@@ -3814,6 +3817,75 @@ function form() {
 
 
 /* harmony default export */ __webpack_exports__["default"] = (form);
+
+/***/ }),
+
+/***/ "./src/js/parts/gorizontalSlider.js":
+/*!******************************************!*\
+  !*** ./src/js/parts/gorizontalSlider.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+
+
+function gorizontalSlider() {
+  var slideIndex = 1;
+  var slides = document.querySelectorAll('.feedback-slider-item');
+  var prev = document.querySelector('.main-prev-btn');
+  var next = document.querySelector('.main-next-btn');
+  var dotsWrap = document.querySelector('.slider-dots');
+  var dots = document.querySelectorAll('.dot');
+  plusSlides(slideIndex);
+  setInterval(updateClock, 4000);
+
+  function showSlides(n) {
+    if (n > slides.length - 1) {
+      slideIndex = 1;
+    }
+
+    if (n < 1) {
+      slideIndex = slides.length;
+    }
+
+    slides.forEach(function (item) {
+      slides[slideIndex - 1].classList.add("animated");
+      slides[slideIndex - 1].classList.add("fadeInRight");
+      return item.style.display = 'none';
+    });
+
+    for (var i = 0; i < slides.length; i++) {
+      slides[i].style.display = 'none';
+    }
+
+    slides[slideIndex - 1].style.display = 'block'; // slides[slideIndex - 1].classList.add("animated");
+    // slides[slideIndex - 1].classList.add("fadeOutLeft");
+  }
+
+  prev.addEventListener('click', function () {
+    plusSlides(-1);
+  });
+  next.addEventListener('click', function () {
+    plusSlides(1);
+  });
+
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+  }
+
+  function currentSlide(n) {
+    showSlides(slideIndex = n);
+  }
+
+  function updateClock() {
+    plusSlides(1);
+  }
+} // module.exports = slider;
+
+
+/* harmony default export */ __webpack_exports__["default"] = (gorizontalSlider);
 
 /***/ }),
 

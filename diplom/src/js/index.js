@@ -8,6 +8,9 @@ import addMore from "./parts/addMore";
 import calc from "./parts/calc";
 import filter from "./parts/filter";
 import pictures from "./parts/pictures";
+import gorizontalSlider from "./parts/gorizontalSlider.js";
+
+
 
 
 
@@ -36,6 +39,7 @@ window.addEventListener('DOMContentLoaded', function () {
   calc();
   filter();
   pictures();
+  gorizontalSlider();
   // tabs();
   // timer();
 
