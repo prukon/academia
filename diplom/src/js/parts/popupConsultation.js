@@ -2,7 +2,12 @@
 
 function popupConsultation() {
     let popupConsultation = document.querySelector('.popup-consultation');
-    console.log(popupConsultation);
+
+  setInterval(showModal, 60000);
+
+function showModal(){
+    popupConsultation.style.display = 'block';
+  }
 
 }
 export default popupConsultation;

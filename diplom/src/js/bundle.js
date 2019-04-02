@@ -4385,7 +4385,11 @@ __webpack_require__.r(__webpack_exports__);
 
 function popupConsultation() {
   var popupConsultation = document.querySelector('.popup-consultation');
-  console.log(popupConsultation);
+  setInterval(showModal, 60000);
+
+  function showModal() {
+    popupConsultation.style.display = 'block';
+  }
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (popupConsultation);
