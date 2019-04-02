@@ -3419,8 +3419,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _parts_gorizontalSlider_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./parts/gorizontalSlider.js */ "./src/js/parts/gorizontalSlider.js");
 /* harmony import */ var _parts_dropmenu_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./parts/dropmenu.js */ "./src/js/parts/dropmenu.js");
 /* harmony import */ var _parts_mainform_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./parts/mainform.js */ "./src/js/parts/mainform.js");
+/* harmony import */ var _parts_detailForm_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./parts/detailForm.js */ "./src/js/parts/detailForm.js");
+/* harmony import */ var _parts_popupConsultation_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./parts/popupConsultation.js */ "./src/js/parts/popupConsultation.js");
 //require('es6-promise').polyfill();
 __webpack_require__(/*! formdata-polyfill */ "./node_modules/formdata-polyfill/formdata.min.js");
+
+
 
 
 
@@ -3451,8 +3455,9 @@ window.addEventListener('DOMContentLoaded', function () {
   Object(_parts_pictures__WEBPACK_IMPORTED_MODULE_6__["default"])();
   Object(_parts_gorizontalSlider_js__WEBPACK_IMPORTED_MODULE_7__["default"])();
   Object(_parts_dropmenu_js__WEBPACK_IMPORTED_MODULE_8__["default"])();
-  Object(_parts_mainform_js__WEBPACK_IMPORTED_MODULE_9__["default"])(); // tabs();
-  // timer();
+  Object(_parts_mainform_js__WEBPACK_IMPORTED_MODULE_9__["default"])();
+  Object(_parts_detailForm_js__WEBPACK_IMPORTED_MODULE_10__["default"])();
+  Object(_parts_popupConsultation_js__WEBPACK_IMPORTED_MODULE_11__["default"])(); // timer();
 });
 
 if ('NodeList' in window && !NodeList.prototype.forEach) {
@@ -3611,6 +3616,150 @@ function calc() {
 
 /***/ }),
 
+/***/ "./src/js/parts/detailForm.js":
+/*!************************************!*\
+  !*** ./src/js/parts/detailForm.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es6_regexp_replace__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es6.regexp.replace */ "./node_modules/core-js/modules/es6.regexp.replace.js");
+/* harmony import */ var core_js_modules_es6_regexp_replace__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_regexp_replace__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es6.promise */ "./node_modules/core-js/modules/es6.promise.js");
+/* harmony import */ var core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es6_object_to_string__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es6.object.to-string */ "./node_modules/core-js/modules/es6.object.to-string.js");
+/* harmony import */ var core_js_modules_es6_object_to_string__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_object_to_string__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+
+
+
+var _Promise = typeof Promise === 'undefined' ? __webpack_require__(/*! es6-promise */ "./node_modules/es6-promise/dist/es6-promise.js").Promise : Promise;
+
+function detailForm() {
+  var message = {
+    loading: 'Идет отправка...',
+    success: 'Отправлено',
+    failure: 'Ошибка'
+  };
+  var mainForm = document.querySelector('.detailForm');
+  var input = mainForm.getElementsByTagName('input');
+  var statusMessage = document.createElement('div');
+  var insideForm = document.querySelector('.detailForm button');
+  var insideFormH4 = document.querySelector('.popup-content h4');
+  var insideFormFile = document.querySelector('.detailForm .name-value');
+  var consultationBtn = document.querySelector('.detailForm .phone-number');
+  var phone = document.querySelectorAll('.phone-number');
+  var commentValue = document.querySelectorAll('.comment-value');
+  var name = document.querySelectorAll('.name-value');
+  statusMessage.classList.add('status');
+
+  function sendForm(elem) {
+    elem.addEventListener('submit', function (event) {
+      if (elem.classList.contains('detailForm')) {
+        event.preventDefault();
+        elem.appendChild(statusMessage);
+        var formData = new FormData(elem);
+        var obj = {};
+        formData.forEach(function (value, key) {
+          obj[key] = value;
+        });
+        var json = JSON.stringify(obj);
+
+        function postData(data) {
+          return new _Promise(function (resolve, reject) {
+            var request = new XMLHttpRequest();
+            request.open('POST', 'server.php');
+            request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+
+            request.onreadystatechange = function () {
+              if (request.readyState < 4) {
+                resolve();
+              } else if (request.readyState === 4) {
+                if (request.status == 200) {
+                  resolve();
+                } else {
+                  reject();
+                }
+              }
+            };
+
+            request.send(data);
+          });
+        } //end postData
+
+
+        function ClearInput() {
+          for (var i = 0; i < input.length; i++) {
+            input[i].value = '';
+          }
+        }
+
+        postData(json).then(function () {
+          return statusMessage.innerHTML = message.loading;
+        }).then(function () {
+          insideForm.style.display = "none";
+          insideFormH4.style.display = "none";
+          insideFormFile.style.display = "none";
+          consultationBtn.style.display = "none";
+          statusMessage.innerHTML = message.success;
+        }).catch(function () {
+          insideForm.style.display = "none";
+          insideFormH4.style.display = "none";
+          insideFormFile.style.display = "none";
+          consultationBtn.style.display = "none";
+          return statusMessage.innerHTML = message.failure;
+        }).then(ClearInput);
+      }
+    });
+  }
+
+  function validPhone(i) {
+    phone[i].addEventListener('input', function () {
+      phone[i].value = phone[i].value.replace(/[^0-9]/g, "").slice(0, 11);
+    });
+  }
+
+  ;
+
+  for (var i = 0; i < phone.length; i++) {
+    validPhone(i);
+  }
+
+  function validName(i) {
+    name[i].addEventListener('input', function () {
+      name[i].value = name[i].value.replace(/[^А-я]/g, "");
+    });
+  }
+
+  ;
+
+  for (var _i = 0; _i < name.length; _i++) {
+    validName(_i);
+  }
+
+  function validComment(i) {
+    commentValue[i].addEventListener('input', function () {
+      commentValue[i].value = commentValue[i].value.replace(/[A-z]/g, "");
+    });
+  }
+
+  ;
+
+  for (var _i2 = 0; _i2 < commentValue.length; _i2++) {
+    validComment(_i2);
+  }
+
+  sendForm(mainForm);
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (detailForm);
+
+/***/ }),
+
 /***/ "./src/js/parts/dropmenu.js":
 /*!**********************************!*\
   !*** ./src/js/parts/dropmenu.js ***!
@@ -3746,16 +3895,16 @@ function form() {
     loading: 'Идет отправка...',
     success: 'Отправлено',
     failure: 'Ошибка'
-  },
-      form = document.querySelector('.getDesign'),
-      input = form.getElementsByTagName('input'),
-      statusMessage = document.createElement('div'),
-      insideForm = document.querySelector('.getDesign .main-form'),
-      insideFormH4 = document.querySelector('.getDesign h4'),
-      insideFormFile = document.querySelector('.getDesign .file_uploa'),
-      phone = document.querySelectorAll('.phone-number'),
-      commentValue = document.querySelectorAll('.comment-value'),
-      name = document.querySelectorAll('.name-value'); //  form2 = document.querySelector('#form'),
+  };
+  var form = document.querySelector('.modalForm');
+  var input = form.getElementsByTagName('input');
+  var statusMessage = document.createElement('div');
+  var insideForm = document.querySelector('.getDesign .main-form');
+  var insideFormH4 = document.querySelector('.getDesign h4');
+  var insideFormFile = document.querySelector('.getDesign .file_uploa');
+  var phone = document.querySelectorAll('.phone-number');
+  var commentValue = document.querySelectorAll('.comment-value');
+  var name = document.querySelectorAll('.name-value'); //  form2 = document.querySelector('#form'),
   //   popup = document.querySelector('.popup');
 
   statusMessage.classList.add('status');
@@ -3769,11 +3918,13 @@ function form() {
         var obj = {};
         formData.forEach(function (value, key) {
           obj[key] = value;
-        });
+        }); // for(let i=0; i<formData.length;i++){
+        //   obj[i] = formData[i];
+        // };
 
-        var _json = JSON.stringify(obj);
+        var json = JSON.stringify(obj);
 
-        function _postData(data) {
+        function postData(data) {
           return new _Promise(function (resolve, reject) {
             var request = new XMLHttpRequest();
             request.open('POST', 'server.php');
@@ -3796,29 +3947,29 @@ function form() {
 
             request.send(data);
           });
-        }
-      } //end postData
+        } //end postData
 
 
-      function ClearInput() {
-        for (var i = 0; i < input.length; i++) {
-          input[i].value = '';
+        function ClearInput() {
+          for (var i = 0; i < input.length; i++) {
+            input[i].value = '';
+          }
         }
+
+        postData(json).then(function () {
+          return statusMessage.innerHTML = message.loading;
+        }).then(function () {
+          insideForm.style.display = "none";
+          insideFormH4.style.display = "none";
+          insideFormFile.style.display = "none";
+          statusMessage.innerHTML = message.success;
+        }).catch(function () {
+          insideForm.style.display = "none";
+          insideFormH4.style.display = "none";
+          insideFormFile.style.display = "none";
+          return statusMessage.innerHTML = message.failure;
+        }).then(ClearInput);
       }
-
-      postData(json).then(function () {
-        return statusMessage.innerHTML = message.loading;
-      }).then(function () {
-        insideForm.style.display = "none";
-        insideFormH4.style.display = "none";
-        insideFormFile.style.display = "none";
-        statusMessage.innerHTML = message.success;
-      }).catch(function () {
-        insideForm.style.display = "none";
-        insideFormH4.style.display = "none";
-        insideFormFile.style.display = "none";
-        return statusMessage.innerHTML = message.failure;
-      }).then(ClearInput);
     });
   }
 
@@ -3964,7 +4115,7 @@ function mainform() {
     success: 'Отправлено',
     failure: 'Ошибка'
   };
-  var mainForm = document.querySelector('.consultation form');
+  var mainForm = document.querySelector('.mainform');
   var input = mainForm.getElementsByTagName('input');
   var statusMessage = document.createElement('div');
   var insideForm = document.querySelector('.consultation .p-heading');
@@ -4218,6 +4369,26 @@ function pictures() {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (pictures);
+
+/***/ }),
+
+/***/ "./src/js/parts/popupConsultation.js":
+/*!*******************************************!*\
+  !*** ./src/js/parts/popupConsultation.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+
+
+function popupConsultation() {
+  var popupConsultation = document.querySelector('.popup-consultation');
+  console.log(popupConsultation);
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (popupConsultation);
 
 /***/ }),
 

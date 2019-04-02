@@ -1,6 +1,5 @@
 //require('es6-promise').polyfill();
 require('formdata-polyfill');
-
 import slider from "./parts/slider";
 import modal from "./parts/modal";
 import form from "./parts/form";
@@ -11,30 +10,22 @@ import pictures from "./parts/pictures";
 import gorizontalSlider from "./parts/gorizontalSlider.js";
 import dropmenu from "./parts/dropmenu.js";
 import mainform from "./parts/mainform.js";
-
-
+import detailForm from "./parts/detailForm.js";
+import popupConsultation from "./parts/popupConsultation.js";
 
 
 
 
 // import tabs from "./parts/tabs";
 // import timer from "./parts/timer";
-
-
-
-
-
 window.addEventListener('DOMContentLoaded', function () {
-
   'use strict';
-
   // let calc = require('./parts/calc'),
   //     tabs = require('./parts/tabs'),
   //     timer = require('./parts/timer'),
   //     modal = require('./parts/modal'),
   //     form = require('./parts/form'),
   //     slider = require('./parts/slider');
-
   slider();
   modal();
   form();
@@ -45,13 +36,10 @@ window.addEventListener('DOMContentLoaded', function () {
   gorizontalSlider();
   dropmenu();
   mainform();
-  // tabs();
+  detailForm();
+  popupConsultation();
   // timer();
-
-
-
 });
-
 if ('NodeList' in window && !NodeList.prototype.forEach) {
   console.info('polyfill for IE11');
   NodeList.prototype.forEach = function (callback, thisArg) {

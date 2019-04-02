@@ -1,19 +1,21 @@
 "use strict";
 
-function mainform() {
+function detailForm() {
     let message = {
         loading: 'Идет отправка...',
         success: 'Отправлено',
         failure: 'Ошибка'
     }; 
 
-    let mainForm = document.querySelector('.mainform');
+    let mainForm = document.querySelector('.detailForm');
     let input = mainForm.getElementsByTagName('input');
     let statusMessage = document.createElement('div');
-    let insideForm = document.querySelector('.consultation .p-heading'); 
-    let insideFormH4 = document.querySelector('.consultation h2');
-    let insideFormFile = document.querySelector('.input-wrapper');
-    let consultationBtn = document.querySelector('.consultation .button-order');
+
+    let insideForm = document.querySelector('.detailForm button'); 
+    let insideFormH4 = document.querySelector('.popup-content h4');
+    let insideFormFile = document.querySelector('.detailForm .name-value');
+    let consultationBtn = document.querySelector('.detailForm .phone-number');
+
     let phone = document.querySelectorAll('.phone-number');
     let commentValue = document.querySelectorAll('.comment-value');
     let name = document.querySelectorAll('.name-value');
@@ -22,7 +24,7 @@ function mainform() {
 
     function sendForm(elem) {
         elem.addEventListener('submit', function (event) {
-            if (elem.classList.contains('mainform')) {
+            if (elem.classList.contains('detailForm')) {
                 event.preventDefault();
                 elem.appendChild(statusMessage);
                 let formData = new FormData(elem);
@@ -106,4 +108,4 @@ function mainform() {
     }
     sendForm(mainForm);
 }
-export default mainform;
+export default detailForm;
