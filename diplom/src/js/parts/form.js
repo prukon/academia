@@ -2,7 +2,7 @@
 
 
 function form() {
-	var message = {
+	let message = {
 			loading: 'Идет отправка...',
 			success: 'Отправлено',
 			failure: 'Ошибка'
@@ -15,11 +15,11 @@ function form() {
 		insideFormH4 = document.querySelector('.getDesign h4'),
 		insideFormFile = document.querySelector('.getDesign .file_uploa'),
 		phone = document.querySelectorAll('.phone-number'),
-		commentValue = document.querySelectorAll('.comment-value'),		
+		commentValue = document.querySelectorAll('.comment-value'),
 		name = document.querySelectorAll('.name-value');
 
 
-		
+
 
 
 	//  form2 = document.querySelector('#form'),
@@ -28,46 +28,43 @@ function form() {
 
 	function sendForm(elem) {
 		elem.addEventListener('submit', function (event) {
-			event.preventDefault();
-			elem.appendChild(statusMessage);
-			var formData = new FormData(elem);
-			var obj = {};
-			formData.forEach(function (value, key) {
-				obj[key] = value;
-			});
-			// for(let i=0; i<formData.length;i++){
-			//   obj[i] = formData[i];
-			// };
-			var json = JSON.stringify(obj);
-
-			function postData(data) {
-				return new Promise(function (resolve, reject) {
-					var request = new XMLHttpRequest();
-					request.open('POST', 'server.php');
-					request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-
-					request.onreadystatechange = function () {
-						if (request.readyState < 4) {
-							resolve();
-							console.log('1');
-						} else if (request.readyState === 4) {
-							if (request.status == 200) {
-								resolve();
-								console.log('2');
-							} else {
-								reject();
-								console.log('3');
-							}
-						}
-					};
-
-					request.send(data);
+			if (elem.classList.contains('modalForm')) {
+				event.preventDefault();
+				elem.appendChild(statusMessage);
+				let formData = new FormData(elem);
+				let obj = {};
+				formData.forEach(function (value, key) {
+					obj[key] = value;
 				});
+				let json = JSON.stringify(obj);
+
+				function postData(data) {
+					return new Promise(function (resolve, reject) {
+						let request = new XMLHttpRequest();
+						request.open('POST', 'server.php');
+						request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+						request.onreadystatechange = function () {
+							if (request.readyState < 4) {
+								resolve();
+								console.log('1');
+							} else if (request.readyState === 4) {
+								if (request.status == 200) {
+									resolve();
+									console.log('2');
+								} else {
+									reject();
+									console.log('3');
+								}
+							}
+						};
+						request.send(data);
+					});
+				}
 			} //end postData
 
 
 			function ClearInput() {
-				for (var i = 0; i < input.length; i++) {
+				for (let i = 0; i < input.length; i++) {
 					input[i].value = '';
 				}
 			}
@@ -94,36 +91,37 @@ function form() {
 
 	}
 
-	  function validPhone(i) {
-	    phone[i].addEventListener('input', function () {
-	      phone[i].value = phone[i].value.replace(/[^0-9]/g, "").slice(0, 11);
-	    });
-	  };
+	function validPhone(i) {
+		phone[i].addEventListener('input', function () {
+			phone[i].value = phone[i].value.replace(/[^0-9]/g, "").slice(0, 11);
+		});
+	};
 
-	  for (var i = 0; i < phone.length; i++) {
-	    validPhone(i);
-	  }
+	for (let i = 0; i < phone.length; i++) {
+		validPhone(i);
+	}
 
-	  function validName(i) {
-	    name[i].addEventListener('input', function () {
+	function validName(i) {
+		name[i].addEventListener('input', function () {
 			name[i].value = name[i].value.replace(/[^А-я]/g, "");
-	    });
-	  };
-	  for (var i = 0; i < name.length; i++) {
-	    validName(i);
-	  }
-	  function validComment(i) {
-	    commentValue[i].addEventListener('input', function () {
-			commentValue[i].value = commentValue[i].value.replace(/[^А-я]/g, "");
-	    });
-	  };
-	  for (var i = 0; i < commentValue.length; i++) {
-	    validComment(i);
-	  }
+		});
+	};
+	for (let i = 0; i < name.length; i++) {
+		validName(i);
+	}
+
+	function validComment(i) {
+		commentValue[i].addEventListener('input', function () {
+			commentValue[i].value = commentValue[i].value.replace(/[A-z]/g, "");
+		});
+	};
+	for (let i = 0; i < commentValue.length; i++) {
+		validComment(i);
+	}
 
 
 
-	  
+
 
 
 

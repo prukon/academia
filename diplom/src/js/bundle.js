@@ -3418,8 +3418,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _parts_pictures__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./parts/pictures */ "./src/js/parts/pictures.js");
 /* harmony import */ var _parts_gorizontalSlider_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./parts/gorizontalSlider.js */ "./src/js/parts/gorizontalSlider.js");
 /* harmony import */ var _parts_dropmenu_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./parts/dropmenu.js */ "./src/js/parts/dropmenu.js");
+/* harmony import */ var _parts_mainform_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./parts/mainform.js */ "./src/js/parts/mainform.js");
 //require('es6-promise').polyfill();
 __webpack_require__(/*! formdata-polyfill */ "./node_modules/formdata-polyfill/formdata.min.js");
+
 
 
 
@@ -3448,7 +3450,8 @@ window.addEventListener('DOMContentLoaded', function () {
   Object(_parts_filter__WEBPACK_IMPORTED_MODULE_5__["default"])();
   Object(_parts_pictures__WEBPACK_IMPORTED_MODULE_6__["default"])();
   Object(_parts_gorizontalSlider_js__WEBPACK_IMPORTED_MODULE_7__["default"])();
-  Object(_parts_dropmenu_js__WEBPACK_IMPORTED_MODULE_8__["default"])(); // tabs();
+  Object(_parts_dropmenu_js__WEBPACK_IMPORTED_MODULE_8__["default"])();
+  Object(_parts_mainform_js__WEBPACK_IMPORTED_MODULE_9__["default"])(); // tabs();
   // timer();
 });
 
@@ -3759,41 +3762,41 @@ function form() {
 
   function sendForm(elem) {
     elem.addEventListener('submit', function (event) {
-      event.preventDefault();
-      elem.appendChild(statusMessage);
-      var formData = new FormData(elem);
-      var obj = {};
-      formData.forEach(function (value, key) {
-        obj[key] = value;
-      }); // for(let i=0; i<formData.length;i++){
-      //   obj[i] = formData[i];
-      // };
-
-      var json = JSON.stringify(obj);
-
-      function postData(data) {
-        return new _Promise(function (resolve, reject) {
-          var request = new XMLHttpRequest();
-          request.open('POST', 'server.php');
-          request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-
-          request.onreadystatechange = function () {
-            if (request.readyState < 4) {
-              resolve();
-              console.log('1');
-            } else if (request.readyState === 4) {
-              if (request.status == 200) {
-                resolve();
-                console.log('2');
-              } else {
-                reject();
-                console.log('3');
-              }
-            }
-          };
-
-          request.send(data);
+      if (elem.classList.contains('modalForm')) {
+        event.preventDefault();
+        elem.appendChild(statusMessage);
+        var formData = new FormData(elem);
+        var obj = {};
+        formData.forEach(function (value, key) {
+          obj[key] = value;
         });
+
+        var _json = JSON.stringify(obj);
+
+        function _postData(data) {
+          return new _Promise(function (resolve, reject) {
+            var request = new XMLHttpRequest();
+            request.open('POST', 'server.php');
+            request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+
+            request.onreadystatechange = function () {
+              if (request.readyState < 4) {
+                resolve();
+                console.log('1');
+              } else if (request.readyState === 4) {
+                if (request.status == 200) {
+                  resolve();
+                  console.log('2');
+                } else {
+                  reject();
+                  console.log('3');
+                }
+              }
+            };
+
+            request.send(data);
+          });
+        }
       } //end postData
 
 
@@ -3839,20 +3842,20 @@ function form() {
 
   ;
 
-  for (var i = 0; i < name.length; i++) {
-    validName(i);
+  for (var _i = 0; _i < name.length; _i++) {
+    validName(_i);
   }
 
   function validComment(i) {
     commentValue[i].addEventListener('input', function () {
-      commentValue[i].value = commentValue[i].value.replace(/[^А-я]/g, "");
+      commentValue[i].value = commentValue[i].value.replace(/[A-z]/g, "");
     });
   }
 
   ;
 
-  for (var i = 0; i < commentValue.length; i++) {
-    validComment(i);
+  for (var _i2 = 0; _i2 < commentValue.length; _i2++) {
+    validComment(_i2);
   }
 
   sendForm(form); // sendForm(form2);
@@ -3929,6 +3932,150 @@ function gorizontalSlider() {
 
 
 /* harmony default export */ __webpack_exports__["default"] = (gorizontalSlider);
+
+/***/ }),
+
+/***/ "./src/js/parts/mainform.js":
+/*!**********************************!*\
+  !*** ./src/js/parts/mainform.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es6_regexp_replace__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es6.regexp.replace */ "./node_modules/core-js/modules/es6.regexp.replace.js");
+/* harmony import */ var core_js_modules_es6_regexp_replace__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_regexp_replace__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es6.promise */ "./node_modules/core-js/modules/es6.promise.js");
+/* harmony import */ var core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es6_object_to_string__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es6.object.to-string */ "./node_modules/core-js/modules/es6.object.to-string.js");
+/* harmony import */ var core_js_modules_es6_object_to_string__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_object_to_string__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+
+
+
+var _Promise = typeof Promise === 'undefined' ? __webpack_require__(/*! es6-promise */ "./node_modules/es6-promise/dist/es6-promise.js").Promise : Promise;
+
+function mainform() {
+  var message = {
+    loading: 'Идет отправка...',
+    success: 'Отправлено',
+    failure: 'Ошибка'
+  };
+  var mainForm = document.querySelector('.consultation form');
+  var input = mainForm.getElementsByTagName('input');
+  var statusMessage = document.createElement('div');
+  var insideForm = document.querySelector('.consultation .p-heading');
+  var insideFormH4 = document.querySelector('.consultation h2');
+  var insideFormFile = document.querySelector('.input-wrapper');
+  var consultationBtn = document.querySelector('.consultation .button-order');
+  var phone = document.querySelectorAll('.phone-number');
+  var commentValue = document.querySelectorAll('.comment-value');
+  var name = document.querySelectorAll('.name-value');
+  statusMessage.classList.add('status');
+
+  function sendForm(elem) {
+    elem.addEventListener('submit', function (event) {
+      if (elem.classList.contains('mainform')) {
+        event.preventDefault();
+        elem.appendChild(statusMessage);
+        var formData = new FormData(elem);
+        var obj = {};
+        formData.forEach(function (value, key) {
+          obj[key] = value;
+        });
+        var json = JSON.stringify(obj);
+
+        function postData(data) {
+          return new _Promise(function (resolve, reject) {
+            var request = new XMLHttpRequest();
+            request.open('POST', 'server.php');
+            request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+
+            request.onreadystatechange = function () {
+              if (request.readyState < 4) {
+                resolve();
+              } else if (request.readyState === 4) {
+                if (request.status == 200) {
+                  resolve();
+                } else {
+                  reject();
+                }
+              }
+            };
+
+            request.send(data);
+          });
+        } //end postData
+
+
+        function ClearInput() {
+          for (var i = 0; i < input.length; i++) {
+            input[i].value = '';
+          }
+        }
+
+        postData(json).then(function () {
+          return statusMessage.innerHTML = message.loading;
+        }).then(function () {
+          insideForm.style.display = "none";
+          insideFormH4.style.display = "none";
+          insideFormFile.style.display = "none";
+          consultationBtn.style.display = "none";
+          statusMessage.innerHTML = message.success;
+        }).catch(function () {
+          insideForm.style.display = "none";
+          insideFormH4.style.display = "none";
+          insideFormFile.style.display = "none";
+          consultationBtn.style.display = "none";
+          return statusMessage.innerHTML = message.failure;
+        }).then(ClearInput);
+      }
+    });
+  }
+
+  function validPhone(i) {
+    phone[i].addEventListener('input', function () {
+      phone[i].value = phone[i].value.replace(/[^0-9]/g, "").slice(0, 11);
+    });
+  }
+
+  ;
+
+  for (var i = 0; i < phone.length; i++) {
+    validPhone(i);
+  }
+
+  function validName(i) {
+    name[i].addEventListener('input', function () {
+      name[i].value = name[i].value.replace(/[^А-я]/g, "");
+    });
+  }
+
+  ;
+
+  for (var _i = 0; _i < name.length; _i++) {
+    validName(_i);
+  }
+
+  function validComment(i) {
+    commentValue[i].addEventListener('input', function () {
+      commentValue[i].value = commentValue[i].value.replace(/[A-z]/g, "");
+    });
+  }
+
+  ;
+
+  for (var _i2 = 0; _i2 < commentValue.length; _i2++) {
+    validComment(_i2);
+  }
+
+  sendForm(mainForm);
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (mainform);
 
 /***/ }),
 
@@ -4030,7 +4177,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function pictures() {
-  var sizesBlock = document.querySelectorAll('.sizes-block'); //Добавляем
+  var sizesBlock = document.querySelectorAll('.sizes-block');
+  var sizesWrapper = document.querySelector('.sizes-wrapper'); //Добавляем
+  // sizesWrapper.addEventListener('mouseover', function(event){
+  //     console.log(event.path[0].children);
+  // })
 
   sizesBlock[0].addEventListener('mouseover', function () {
     showPictures(0, "img/sizes-1-1.png", true);

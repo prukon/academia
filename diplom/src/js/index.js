@@ -10,8 +10,7 @@ import filter from "./parts/filter";
 import pictures from "./parts/pictures";
 import gorizontalSlider from "./parts/gorizontalSlider.js";
 import dropmenu from "./parts/dropmenu.js";
-
-
+import mainform from "./parts/mainform.js";
 
 
 
@@ -45,6 +44,7 @@ window.addEventListener('DOMContentLoaded', function () {
   pictures();
   gorizontalSlider();
   dropmenu();
+  mainform();
   // tabs();
   // timer();
 
