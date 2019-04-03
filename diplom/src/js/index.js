@@ -12,6 +12,7 @@ import dropmenu from "./parts/dropmenu.js";
 import mainform from "./parts/mainform.js";
 import detailForm from "./parts/detailForm.js";
 import popupConsultation from "./parts/popupConsultation.js";
+import scrollmodal from "./parts/scrollmodal.js";
 
 
 
@@ -38,6 +39,7 @@ window.addEventListener('DOMContentLoaded', function () {
   mainform();
   detailForm();
   popupConsultation();
+  scrollmodal();
   // timer();
 });
 if ('NodeList' in window && !NodeList.prototype.forEach) {

@@ -3421,8 +3421,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _parts_mainform_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./parts/mainform.js */ "./src/js/parts/mainform.js");
 /* harmony import */ var _parts_detailForm_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./parts/detailForm.js */ "./src/js/parts/detailForm.js");
 /* harmony import */ var _parts_popupConsultation_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./parts/popupConsultation.js */ "./src/js/parts/popupConsultation.js");
+/* harmony import */ var _parts_scrollmodal_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./parts/scrollmodal.js */ "./src/js/parts/scrollmodal.js");
 //require('es6-promise').polyfill();
 __webpack_require__(/*! formdata-polyfill */ "./node_modules/formdata-polyfill/formdata.min.js");
+
 
 
 
@@ -3457,7 +3459,8 @@ window.addEventListener('DOMContentLoaded', function () {
   Object(_parts_dropmenu_js__WEBPACK_IMPORTED_MODULE_8__["default"])();
   Object(_parts_mainform_js__WEBPACK_IMPORTED_MODULE_9__["default"])();
   Object(_parts_detailForm_js__WEBPACK_IMPORTED_MODULE_10__["default"])();
-  Object(_parts_popupConsultation_js__WEBPACK_IMPORTED_MODULE_11__["default"])(); // timer();
+  Object(_parts_popupConsultation_js__WEBPACK_IMPORTED_MODULE_11__["default"])();
+  Object(_parts_scrollmodal_js__WEBPACK_IMPORTED_MODULE_12__["default"])(); // timer();
 });
 
 if ('NodeList' in window && !NodeList.prototype.forEach) {
@@ -4393,6 +4396,25 @@ function popupConsultation() {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (popupConsultation);
+
+/***/ }),
+
+/***/ "./src/js/parts/scrollmodal.js":
+/*!*************************************!*\
+  !*** ./src/js/parts/scrollmodal.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+
+
+function scrollmodal() {
+  var popupGift = document.querySelector('.popup-gift'); // if($(window).scrollTop()+$(window).height()>=$(document).height())
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (scrollmodal); // Так найди высоту body. Если pageYOffset будет равен высоте body за вычетом высоты viewport то значит доскролил до конца
 
 /***/ }),
 
